@@ -140,9 +140,9 @@ Contribuições são bem-vindas! Para contribuir:
 
 ## 👤 Autor
 
-Desenvolvido por **Seu Nome**.
+Desenvolvido por **Arthur C - Dev**.
 
-[![GitHub](https://img.shields.io/badge/GitHub-seu--usuario-181717?logo=github)](https://github.com/seu-usuario)
+[![GitHub](https://img.shields.io/badge/GitHub-AarthurCesar-181717?logo=github)](https://github.com/AarthurCesar)
 
 ---
 
