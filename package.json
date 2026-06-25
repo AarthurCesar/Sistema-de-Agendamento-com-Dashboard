@@ -6,7 +6,8 @@
   "main": "src/server/index.js",
   "scripts": {
     "dev": "node --watch src/server/index.js",
-    "start": "node src/server/index.js",
+    "start": "node src/database/migrate.js && node src/server/index.js",
+    "build": "npm install --prefix src/client && npm run build --prefix src/client",
     "migrate": "node src/database/migrate.js",
     "seed": "node src/database/seed.js",
     "test": "node --import ./tests/env.js --test --test-concurrency=1 tests/*.test.js"
