@@ -13,23 +13,23 @@ async function seed() {
   const passwordHash = await bcrypt.hash('senha123', 10);
 
   // --- Usuários ---
-  const admin = await insertUser('Arthur Admin', 'admin@demo.com', passwordHash, 'admin');
+  const admin = await insertUser('Arthur Admin', 'admin@demo.com', passwordHash, 'admin', '+5511999990000');
 
   const profs = [];
-  for (const [name, email] of [
-    ['Ana Profissional', 'ana@demo.com'],
-    ['Bruno Profissional', 'bruno@demo.com'],
+  for (const [name, email, phone] of [
+    ['Ana Profissional', 'ana@demo.com', '+5511999990001'],
+    ['Bruno Profissional', 'bruno@demo.com', '+5511999990002'],
   ]) {
-    profs.push(await insertUser(name, email, passwordHash, 'professional'));
+    profs.push(await insertUser(name, email, passwordHash, 'professional', phone));
   }
 
   const clients = [];
-  for (const [name, email] of [
-    ['Carla Cliente', 'carla@demo.com'],
-    ['Diego Cliente', 'diego@demo.com'],
-    ['Eva Cliente', 'eva@demo.com'],
+  for (const [name, email, phone] of [
+    ['Carla Cliente', 'carla@demo.com', '+5511988880001'],
+    ['Diego Cliente', 'diego@demo.com', '+5511988880002'],
+    ['Eva Cliente', 'eva@demo.com', '+5511988880003'],
   ]) {
-    clients.push(await insertUser(name, email, passwordHash, 'client'));
+    clients.push(await insertUser(name, email, passwordHash, 'client', phone));
   }
 
   // --- Serviços ---
@@ -89,11 +89,11 @@ async function seed() {
   await pool.end();
 }
 
-async function insertUser(name, email, passwordHash, role) {
+async function insertUser(name, email, passwordHash, role, phone = null) {
   const { rows } = await query(
-    `INSERT INTO users (name, email, password_hash, role)
-     VALUES ($1, $2, $3, $4) RETURNING id`,
-    [name, email, passwordHash, role],
+    `INSERT INTO users (name, email, password_hash, role, phone)
+     VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+    [name, email, passwordHash, role, phone],
   );
   return rows[0];
 }

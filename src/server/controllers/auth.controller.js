@@ -14,7 +14,7 @@ function signToken(user) {
 // POST /api/auth/register
 export async function register(req, res, next) {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, phone } = req.body;
 
     if (!name || !email || !password) {
       throw createError(400, 'Nome, e-mail e senha são obrigatórios');
@@ -28,10 +28,10 @@ export async function register(req, res, next) {
     const passwordHash = await bcrypt.hash(password, 10);
 
     const result = await query(
-      `INSERT INTO users (name, email, password_hash, role)
-       VALUES ($1, $2, $3, $4)
+      `INSERT INTO users (name, email, password_hash, role, phone)
+       VALUES ($1, $2, $3, $4, $5)
        RETURNING id, name, email, role`,
-      [name, email, passwordHash, role === 'admin' ? 'client' : role || 'client'],
+      [name, email, passwordHash, role === 'admin' ? 'client' : role || 'client', phone || null],
     );
 
     const user = result.rows[0];

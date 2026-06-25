@@ -7,6 +7,7 @@ const NAV = [
   { to: '/agendar', label: '🗓️ Agendar', roles: ['client'] },
   { to: '/agendamentos', label: '📋 Agendamentos', roles: ['admin', 'professional', 'client'] },
   { to: '/servicos', label: '✂️ Serviços', roles: ['admin'] },
+  { to: '/notificacoes', label: '📱 Notificações', roles: ['admin'] },
 ];
 
 export default function Layout() {

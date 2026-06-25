@@ -6,6 +6,7 @@ import DashboardPage from './pages/DashboardPage.jsx';
 import BookingPage from './pages/BookingPage.jsx';
 import AppointmentsPage from './pages/AppointmentsPage.jsx';
 import ServicesPage from './pages/ServicesPage.jsx';
+import NotificationsPage from './pages/NotificationsPage.jsx';
 
 // Protege rotas que exigem autenticação (e opcionalmente papéis específicos).
 function RequireAuth({ roles, children }) {
@@ -60,6 +61,14 @@ export default function App() {
           element={
             <RequireAuth roles={['admin']}>
               <ServicesPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/notificacoes"
+          element={
+            <RequireAuth roles={['admin']}>
+              <NotificationsPage />
             </RequireAuth>
           }
         />
